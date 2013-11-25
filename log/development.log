@@ -45,3 +45,98 @@ Served asset /application.js - 200 OK (5ms)
 
 Started GET "/assets/instructions.js?body=1" for 127.0.0.1 at 2013-07-02 17:28:28 -0500
 Served asset /instructions.js - 304 Not Modified (1ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.8ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTrades (20131125221945)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "trades" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "trade_id" integer, "counter_party" varchar(255), "trader" varchar(255), "mtm_curve" varchar(255), "buy_sell" varchar(255), "price" decimal, "volume" integer, "tenor_start" varchar(255), "tenor_end" varchar(255), "delivery_location" varchar(255), "instrument" varchar(255), "brokerage" varchar(255), "tags" varchar(255), "notes" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20131125221945')
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("trades")
+
+
+Started GET "/" for 127.0.0.1 at 2013-11-25 16:23:54 -0600
+Connecting to database specified by database.yml
+Processing by InstructionsController#index as HTML
+Compiled github.css  (2ms)  (pid 5999)
+  Rendered instructions/index.html.erb within layouts/application (65.9ms)
+Compiled application.css  (2ms)  (pid 5999)
+Compiled application.js  (1ms)  (pid 5999)
+Completed 200 OK in 121ms (Views: 120.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/github.css?body=1" for 127.0.0.1 at 2013-11-25 16:23:54 -0600
+Served asset /github.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-11-25 16:23:54 -0600
+Served asset /application.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-11-25 16:23:54 -0600
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/trades" for 127.0.0.1 at 2013-11-25 16:23:58 -0600
+Processing by TradesController#index as HTML
+  [1m[36mTrade Load (0.4ms)[0m  [1mSELECT "trades".* FROM "trades" [0m
+  Rendered trades/index.html.erb within layouts/application (58.0ms)
+Completed 200 OK in 65ms (Views: 62.2ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-11-25 16:23:58 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-11-25 16:23:58 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (7.5ms)[0m  INSERT INTO "trades" ("brokerage", "buy_sell", "counter_party", "created_at", "delivery_location", "instrument", "mtm_curve", "notes", "price", "tags", "tenor_end", "tenor_start", "trade_id", "trader", "updated_at", "volume") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["brokerage", "OTC Global"], ["buy_sell", "B"], ["counter_party", "NYMEX"], ["created_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["delivery_location", nil], ["instrument", "NYMEX CL Future"], ["mtm_curve", "NYMEX CL"], ["notes", "Financial Future: NYMEX CL"], ["price", #<BigDecimal:7fc131e48ca8,'0.8E2',9(18)>], ["tags", "#OilHedge #HoustonBook"], ["tenor_end", "Apr-13"], ["tenor_start", "Apr-13"], ["trade_id", 1], ["trader", "Sam Parikh"], ["updated_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["volume", 30000]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "trades" ("brokerage", "buy_sell", "counter_party", "created_at", "delivery_location", "instrument", "mtm_curve", "notes", "price", "tags", "tenor_end", "tenor_start", "trade_id", "trader", "updated_at", "volume") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["brokerage", "OTC Global"], ["buy_sell", "S"], ["counter_party", "NYMEX"], ["created_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["delivery_location", nil], ["instrument", "NYMEX CL Future"], ["mtm_curve", "NYMEX CL"], ["notes", "Financial Future: NYMEX CL"], ["price", #<BigDecimal:7fc1324bf4b0,'0.85E2',9(18)>], ["tags", "#OilHedge #HoustonBook"], ["tenor_end", "Apr-13"], ["tenor_start", "Apr-13"], ["trade_id", 2], ["trader", "Sam Parikh"], ["updated_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["volume", 10000]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "trades" ("brokerage", "buy_sell", "counter_party", "created_at", "delivery_location", "instrument", "mtm_curve", "notes", "price", "tags", "tenor_end", "tenor_start", "trade_id", "trader", "updated_at", "volume") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["brokerage", "OTC Global"], ["buy_sell", "B"], ["counter_party", "NYMEX"], ["created_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["delivery_location", nil], ["instrument", "NYMEX CL Future"], ["mtm_curve", "NYMEX CL"], ["notes", "Extra tag"], ["price", #<BigDecimal:7fc1324dc538,'0.78E2',9(18)>], ["tags", "#GreatPrice #OilHedge #HoustonBook"], ["tenor_end", "Oct-13"], ["tenor_start", "Apr-13"], ["trade_id", 3], ["trader", "Sam Parikh"], ["updated_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["volume", 10000]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "trades" ("brokerage", "buy_sell", "counter_party", "created_at", "delivery_location", "instrument", "mtm_curve", "notes", "price", "tags", "tenor_end", "tenor_start", "trade_id", "trader", "updated_at", "volume") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["brokerage", "OTC Global"], ["buy_sell", "S"], ["counter_party", "NYMEX"], ["created_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["delivery_location", nil], ["instrument", "NYMEX CL Future"], ["mtm_curve", "NYMEX CL"], ["notes", "Financial Future: NYMEX CL"], ["price", #<BigDecimal:7fc1324ff088,'0.89E2',9(18)>], ["tags", "#OilHedge #HoustonBook"], ["tenor_end", "Oct-13"], ["tenor_start", "Apr-13"], ["trade_id", 4], ["trader", "Sam Parikh"], ["updated_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["volume", 10000]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "trades" ("brokerage", "buy_sell", "counter_party", "created_at", "delivery_location", "instrument", "mtm_curve", "notes", "price", "tags", "tenor_end", "tenor_start", "trade_id", "trader", "updated_at", "volume") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["brokerage", "OTC Global"], ["buy_sell", "B"], ["counter_party", "BP"], ["created_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["delivery_location", "Houston Hub"], ["instrument", "OTC Crude Forward"], ["mtm_curve", "ICE WTI"], ["notes", "Physical Forward"], ["price", #<BigDecimal:7fc1325167d8,'0.95E2',9(18)>], ["tags", "#NaturalNeeds #Physical"], ["tenor_end", "Dec-13"], ["tenor_start", "Jan-13"], ["trade_id", 5], ["trader", "Sameer Soleja"], ["updated_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["volume", 100000]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "trades" ("brokerage", "buy_sell", "counter_party", "created_at", "delivery_location", "instrument", "mtm_curve", "notes", "price", "tags", "tenor_end", "tenor_start", "trade_id", "trader", "updated_at", "volume") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["brokerage", "OTC Global"], ["buy_sell", "B"], ["counter_party", "BG"], ["created_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["delivery_location", "Houston Hub"], ["instrument", "OTC Crude Forward"], ["mtm_curve", "ICE WTI"], ["notes", "Physical Forward"], ["price", #<BigDecimal:7fc13252a508,'0.97E2',9(18)>], ["tags", "#NaturalNeeds #Physical"], ["tenor_end", "Dec-13"], ["tenor_start", "Jan-13"], ["trade_id", 6], ["trader", "Sameer Soleja"], ["updated_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["volume", 30000]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "trades" ("brokerage", "buy_sell", "counter_party", "created_at", "delivery_location", "instrument", "mtm_curve", "notes", "price", "tags", "tenor_end", "tenor_start", "trade_id", "trader", "updated_at", "volume") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["brokerage", "OTC Global"], ["buy_sell", "B"], ["counter_party", "ExxonMobil"], ["created_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["delivery_location", "Houston Hub"], ["instrument", "OTC Crude Forward"], ["mtm_curve", "ICE WTI"], ["notes", "Physical Forward"], ["price", #<BigDecimal:7fc1325595d8,'0.1E3',9(18)>], ["tags", "#NaturalNeeds #Physical"], ["tenor_end", "Dec-13"], ["tenor_start", "Jan-13"], ["trade_id", 7], ["trader", "Sameer Soleja"], ["updated_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["volume", 100000]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "trades" ("brokerage", "buy_sell", "counter_party", "created_at", "delivery_location", "instrument", "mtm_curve", "notes", "price", "tags", "tenor_end", "tenor_start", "trade_id", "trader", "updated_at", "volume") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["brokerage", "OTC Global"], ["buy_sell", "B"], ["counter_party", "Chevron"], ["created_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["delivery_location", "Houston Hub"], ["instrument", "OTC Crude Forward"], ["mtm_curve", "ICE WTI"], ["notes", "Physical Forward"], ["price", #<BigDecimal:7fc131eb4598,'0.95E2',9(18)>], ["tags", "#NaturalNeeds #Physical"], ["tenor_end", "Dec-13"], ["tenor_start", "Jan-13"], ["trade_id", 8], ["trader", "Sameer Soleja"], ["updated_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["volume", 50000]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "trades" ("brokerage", "buy_sell", "counter_party", "created_at", "delivery_location", "instrument", "mtm_curve", "notes", "price", "tags", "tenor_end", "tenor_start", "trade_id", "trader", "updated_at", "volume") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["brokerage", nil], ["buy_sell", "S"], ["counter_party", "Bob's Oil"], ["created_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["delivery_location", "Bob's Oil"], ["instrument", "OTC Crude Forward"], ["mtm_curve", "NYMEX CL"], ["notes", "Index Forward (Bilateral)"], ["price", #<BigDecimal:7fc132597928,'-0.5E-1',9(18)>], ["tags", "#Customer #ProfitProfitProfit"], ["tenor_end", "Dec-13"], ["tenor_start", "Jan-13"], ["trade_id", 9], ["trader", "Randy Baker"], ["updated_at", Mon, 25 Nov 2013 22:24:28 UTC +00:00], ["volume", 300000]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/trades" for 127.0.0.1 at 2013-11-25 16:24:32 -0600
+Processing by TradesController#index as HTML
+  [1m[35mTrade Load (0.2ms)[0m  SELECT "trades".* FROM "trades" 
+  Rendered trades/index.html.erb within layouts/application (21.3ms)
+Completed 200 OK in 27ms (Views: 26.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-11-25 16:24:32 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-11-25 16:24:32 -0600
+Served asset /application.css - 304 Not Modified (0ms)
