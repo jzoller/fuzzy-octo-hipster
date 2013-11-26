@@ -11,7 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131125221945) do
+ActiveRecord::Schema.define(:version => 20131125224538) do
+
+  create_table "price_curves", :force => true do |t|
+    t.string   "curve_name"
+    t.string   "month"
+    t.decimal  "open"
+    t.decimal  "high"
+    t.decimal  "low"
+    t.decimal  "settle"
+    t.decimal  "change"
+    t.decimal  "bwave"
+    t.integer  "vol"
+    t.integer  "efp"
+    t.integer  "efs"
+    t.integer  "block"
+    t.integer  "prev_vol"
+    t.integer  "prev_open"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "trades", :force => true do |t|
     t.integer  "trade_id"
