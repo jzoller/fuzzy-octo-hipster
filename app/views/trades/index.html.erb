@@ -1,7 +1,8 @@
 <!-- This is all you -->
 <!DOCTYPE html>
 <title>Portfolio MTM Value</title>
-trades go here!
+
+<h2>MTM Value of Portfolio</h2>
 <table>
 	<thead>
 		<tr>
@@ -39,8 +40,9 @@ trades go here!
 			<td><%= trade.brokerage%></td>
 			<td><%= trade.tags%></td>
 			<td><%= trade.notes%></td>
-			<td><%= controller.get_mtm_value_for_trade(trade.trade_id)%></td>
+			<td><%= controller.get_mtm_value_for_trade(trade.trade_id).round(2)%></td>
 		</tr>
 		<% end%>
 	</tbody>
 </table>
+Portfolio Total = <%= @portfolio_total%>

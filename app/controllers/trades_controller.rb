@@ -1,8 +1,11 @@
 #.where(:curve_name => trade.mtm_curve)
 class TradesController < ApplicationController
-  
   def index
   	@buy_sell_strings = {'B' => 'Buy', 'S' => 'Sell'}
+  	@portfolio_total = 0
+  	Trade.all.each do |mtm_value|
+  		@portfolio_total += get_mtm_value_for_trade(mtm_value.trade_id).round(2)
+  	end
   end
 
   def get_mtm_value_for_trade(trade_id)
@@ -12,17 +15,16 @@ class TradesController < ApplicationController
   end
 
   def compute_mtm_value(curve_data, trade)
-  	puts 'in compute_mtm_value'
+ 
   	current_id = curve_data.find(find_id_of_month(curve_data, trade.tenor_start.to_s.downcase.gsub(/[- ]/, ''))).id
   	tenor_end_id = curve_data.find(find_id_of_month(curve_data, trade.tenor_end.to_s.downcase.gsub(/[- ]/, ''))).id
   	mtm_value = 0
-  	puts 'tenors set'
   	puts "current_id = #{current_id}  tenor_end_id = #{tenor_end_id}"
   	while current_id <= tenor_end_id
-  		puts'computing mtm'
   		mtm_value += trade.volume * (trade.price - curve_data.find(current_id)[:settle])
   		current_id += 1
   	end
+  	puts "@portfolio_total = #{@portfolio_total}"
   	mtm_value
   end
 
