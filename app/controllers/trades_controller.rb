@@ -24,7 +24,6 @@ class TradesController < ApplicationController
   		mtm_value += trade.volume * (trade.price - curve_data.find(current_id)[:settle])
   		current_id += 1
   	end
-  	puts "@portfolio_total = #{@portfolio_total}"
   	mtm_value
   end
 

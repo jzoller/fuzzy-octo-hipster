@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+ body{
+	background-color: #1A1A1A;
+	font-family: "Tahoma";
+	color: #ADFF2F;
+}
