@@ -10,9 +10,8 @@ task :import_price_curves => :environment  do
 		'ICE BRENT' => 'ice_brent.csv'
 	}
 	price_curve_files.keys.each do |curve_name|
-		puts "importing #{curve_name}"
 		CSV.foreach("db/data/#{price_curve_files[curve_name]}", :headers => true) do |curve|
-			puts 'reading entry'
+			if curve_name != 'NYMEX CL' #note:  would find a MUCH better way if not under time crunch; I do know better
 			PriceCurve.create!(
 				:curve_name => curve_name,
 				:month => curve[0],
@@ -28,9 +27,26 @@ task :import_price_curves => :environment  do
 				:block => curve[10],
 				:prev_vol => curve[11],
 				:prev_open => curve[12]
-
 			)
-			puts 'new entry read'
+			else
+				puts "in nymex 4 = #{curve[4]}, 5 = #{curve[5]}, 6 = #{curve[6]}"
+				PriceCurve.create!(
+				:curve_name => curve_name,
+				:month => curve[0],
+				:open => curve[1],
+				:high => curve[2],
+				:low => curve[3],
+				:settle => curve[6],
+				:change => curve[5],
+				:bwave => 0,
+				:vol => curve[7],
+				:efp => 0,
+				:efs => 0,
+				:block => 0,
+				:prev_vol => 0,
+				:prev_open => curve[8]
+			)
+			end
 		end
 	end
 end

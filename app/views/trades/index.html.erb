@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <title>Portfolio MTM Value</title>
 trades go here!
-
 <table>
 	<thead>
 		<tr>
@@ -20,6 +19,7 @@ trades go here!
 			<th>Brokerage</th>
 			<th>Tags</th>
 			<th>Notes</th>
+			<th>MTM Value</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -29,7 +29,7 @@ trades go here!
 			<td><%= trade.counter_party%></td>
 			<td><%= trade.trader%></td>
 			<td><%= trade.mtm_curve%></td>
-			<td><%= trade.buy_sell%></td>
+			<td><%= @buy_sell_strings[trade.buy_sell]%></td>
 			<td><%= trade.price%></td>
 			<td><%= trade.volume%></td>
 			<td><%= trade.tenor_start%></td>
@@ -39,6 +39,7 @@ trades go here!
 			<td><%= trade.brokerage%></td>
 			<td><%= trade.tags%></td>
 			<td><%= trade.notes%></td>
+			<td><%= controller.get_mtm_value_for_trade(trade.trade_id)%></td>
 		</tr>
 		<% end%>
 	</tbody>

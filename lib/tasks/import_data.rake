@@ -1,6 +1,6 @@
 require 'csv'
 desc "Imports trades.csv into trades table"
-task :import, [:filename] => :environment do
+task :import_trades => :environment do
 	CSV.foreach("db/data/trades.csv", :headers => true) do |trade|
 		#Trade.create!(trade.to_hash)  #this line is not allowed due to mass assignment issues; revisit this issue if time permits
 		Trade.create!(
