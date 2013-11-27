@@ -19,7 +19,7 @@ class TradesController < ApplicationController
   	current_id = curve_data.find(find_id_of_month(curve_data, trade.tenor_start.to_s.downcase.gsub(/[- ]/, ''))).id
   	tenor_end_id = curve_data.find(find_id_of_month(curve_data, trade.tenor_end.to_s.downcase.gsub(/[- ]/, ''))).id
   	mtm_value = 0
-  	puts "current_id = #{current_id}  tenor_end_id = #{tenor_end_id}"
+  	#puts "current_id = #{current_id}  tenor_end_id = #{tenor_end_id}"
   	while current_id <= tenor_end_id
   		mtm_value += trade.volume * (trade.price - curve_data.find(current_id)[:settle])
   		current_id += 1
@@ -30,7 +30,7 @@ class TradesController < ApplicationController
   def find_id_of_month(curve_data, target_month)
   	curve_data.each do |entry|
   		if entry[:month].to_s.downcase.gsub(/[- ]/, '') == target_month
-  			puts "#{entry.id} = entry.id"
+  		#	puts "#{entry.id} = entry.id"
   			return entry.id
   		end
   	end
